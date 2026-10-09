@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }} — Nozimbek{% endblock %}
+{% block content %}
+<article class="content-block article-detail">
+    <div class="prompt">/articles/{{ article.slug }}/</div>
+    <div class="meta">#{{ article.category }}</div>
+    <h1>{{ article.title }}</h1>
+    <div class="article-body">{{ article.content|linebreaks }}</div>
+</article>
+{% endblock %}

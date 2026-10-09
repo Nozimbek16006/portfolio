@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Nozimbek — Full-Stack Developer{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="prompt">$ whoami</div>
+    <h1>Nozimbek Azamov</h1>
+    <p class="lead">Full-Stack Developer</p>
+    <p class="muted">
+        Python, Django, JavaScript va zamonaviy web texnologiyalar yordamida
+        foydali va real loyihalar yarataman.
+    </p>
+
+    <div class="stats">
+        <div><strong>{{ project_count }}+</strong><span>LOYIHALAR</span></div>
+        <div><strong>{{ article_count }}+</strong><span>MAQOLALAR</span></div>
+        <div><strong>∞</strong><span>O'RGANISH</span></div>
+    </div>
+</section>
+
+<section class="terminal-section">
+    <div class="section-title">ls ./latest_projects</div>
+    <div class="grid">
+        {% for project in projects %}
+        <article class="card">
+            <div class="card-top">project/{{ forloop.counter }}</div>
+            <h2>{{ project.title }}</h2>
+            <p>{{ project.description|truncatewords:28 }}</p>
+            <div class="tags">
+                {% for tech in project.tech_list %}
+                    <span>{{ tech }}</span>
+                {% endfor %}
+            </div>
+        </article>
+        {% empty %}
+        <div class="empty">Hozircha loyihalar qo'shilmagan.</div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="commands">
+    <div class="section-title">Mavjud komandalar:</div>
+    <a href="{% url 'portfolio:about' %}">./about.py</a>
+    <a href="{% url 'portfolio:projects' %}">./projects.py</a>
+    <a href="{% url 'portfolio:articles' %}">./articles.py</a>
+    <a href="{% url 'portfolio:contact' %}">./contact.py</a>
+</section>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Contact — Nozimbek{% endblock %}
+{% block content %}
+<section class="page-head">
+    <div class="prompt">/contact/ --status: active</div>
+    <h1>./contact_info --all</h1>
+</section>
+
+<div class="contact-grid">
+    <section class="content-block">
+        <h2>Men bilan bog'lanish</h2>
+        <p><b>Developer:</b> Nozimbek Azamov</p>
+        <p><b>Location:</b> Uzbekistan</p>
+        <p><b>Education:</b> Acharya University, Uzbekistan</p>
+        <p><b>GitHub:</b> Nozimbek16006</p>
+    </section>
+
+    <section class="content-block">
+        <h2>Xabar qoldirish</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Yuborish →</button>
+        </form>
+    </section>
+</div>
+{% endblock %}

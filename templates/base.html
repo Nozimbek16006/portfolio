@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Nozimbek — Developer{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+<div class="scanlines"></div>
+<div class="shell">
+    <header class="topbar">
+        <a class="brand" href="{% url 'portfolio:home' %}">nozimbek@dev:~$</a>
+        <nav>
+            <a href="{% url 'portfolio:about' %}">./about.py</a>
+            <a href="{% url 'portfolio:projects' %}">./projects.py</a>
+            <a href="{% url 'portfolio:articles' %}">./articles.py</a>
+            <a href="{% url 'portfolio:contact' %}">./contact.py</a>
+        </nav>
+    </header>
+
+    <main>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <span>● tizim_holati: <b>active</b></span>
+        <span>© Nozimbek Azamov</span>
+        <span>Django bilan qurilgan</span>
+    </footer>
+</div>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

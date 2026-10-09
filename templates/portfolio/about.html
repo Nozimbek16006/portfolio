@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}About — Nozimbek{% endblock %}
+{% block content %}
+<section class="page-head">
+    <div class="prompt">/about/ --status: active</div>
+    <h1>$ {{ developer.name }}</h1>
+    <p class="lead">{{ developer.role }}</p>
+    <p class="muted">
+        Joylashuv: {{ developer.location }} · Ta'lim: {{ developer.education }}
+    </p>
+</section>
+
+<section class="content-block">
+    <h2>Men haqimda</h2>
+    <p>
+        Assalomu alaykum. Men Nozimbek Azamov, full-stack development
+        yo'nalishida rivojlanayotgan dasturchiman. Python va Django bilan
+        backend, JavaScript va frontend texnologiyalari bilan web loyihalar
+        yarataman.
+    </p>
+    <p>
+        Mening asosiy maqsadim — real muammolarni yechadigan, foydalanuvchiga
+        qulay va toza arxitekturaga ega dasturiy mahsulotlar yaratish.
+        Dasturlash bilan birga Linux, serverlar, cloud texnologiyalari va
+        cybersecurity yo'nalishlariga ham qiziqaman.
+    </p>
+</section>
+
+<section class="content-block">
+    <h2>Texnologiyalar</h2>
+    <div class="tags large">
+        {% for skill in skills %}<span>{{ skill }}</span>{% endfor %}
+    </div>
+</section>
+{% endblock %}

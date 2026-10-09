@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Articles — Nozimbek{% endblock %}
+{% block content %}
+<section class="page-head">
+    <div class="prompt">/articles/ --status: active</div>
+    <h1>ls ./articles</h1>
+</section>
+
+<div class="article-list">
+{% for article in articles %}
+    <article class="article-row">
+        <div class="meta">#{{ article.category }}</div>
+        <h2><a href="{% url 'portfolio:article_detail' article.slug %}">$ {{ article.title }}</a></h2>
+        <p>{{ article.excerpt }}</p>
+        <a class="read" href="{% url 'portfolio:article_detail' article.slug %}">--read-more</a>
+    </article>
+{% empty %}
+    <div class="empty">Hozircha maqolalar yo'q.</div>
+{% endfor %}
+</div>
+{% endblock %}
