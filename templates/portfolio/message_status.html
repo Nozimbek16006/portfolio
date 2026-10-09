@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ {% extends "base.html" %}
+
+{% block content %}
+<section class="message-status">
+    <div class="message-status__card">
+        <p class="message-status__eyebrow">MUROJAAT HOLATI</p>
+
+        <h1>Savolingiz va javob</h1>
+
+        {% for resp in responses %}
+             <p>{{ resp.message }}  -  {{ resp.response }}</p><br>
+
+        {% endfor %}
+
+        <a class="message-status__back" href="{% url 'portfolio:contact' %}">
+            ← Kontakt sahifasiga qaytirsh
+        </a>
+    </div>
+</section>
+{% endblock %}
+</body>
+</html>

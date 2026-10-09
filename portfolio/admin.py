@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Project, Article, ContactMessage
 
+
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ("title", "featured", "created_at")
@@ -19,4 +20,20 @@ class ArticleAdmin(admin.ModelAdmin):
 class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ("name", "email", "is_read", "created_at")
     list_filter = ("is_read",)
-    search_fields = ("name", "email", "message")
+    search_fields = ("name", "email", "message", "response")
+
+    readonly_fields = (
+        "name",
+        "email",
+        "message",
+        "created_at",
+    )
+
+    fields = (
+        "name",
+        "email",
+        "message",
+        "response",
+        "is_read",
+        "created_at",
+    )

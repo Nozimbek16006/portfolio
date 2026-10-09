@@ -208,3 +208,55 @@ button:hover { background: rgba(88, 255, 138, .08); }
     .hero h1, .page-head h1 { letter-spacing: -2px; }
     .footer { flex-direction: column; }
 }
+
+.message-status {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 20px;
+}
+
+.message-status__card {
+    padding: 32px;
+    border: 1px solid var(--border-color, #30363d);
+    border-radius: 18px;
+    background: var(--card-bg, #161b22);
+}
+
+.message-status__eyebrow {
+    color: #58a6ff;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.message-status__question,
+.message-status__answer {
+    margin-top: 24px;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(128, 128, 128, 0.08);
+    overflow-wrap: anywhere;
+}
+
+.message-status__question h2,
+.message-status__answer h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.message-status__back {
+    display: inline-block;
+    margin-top: 24px;
+    color: #58a6ff;
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    .message-status {
+        margin: 24px auto;
+        padding: 12px;
+    }
+
+    .message-status__card {
+        padding: 20px;
+    }
+}

@@ -1,8 +1,16 @@
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import ContactForm
-from .models import Article, Project
+from .models import Article, Project, ContactMessage
+from django.db import models
+import uuid
 
+
+response = models.TextField(
+    blank=True,
+    default="",
+    verbose_name="Javob"
+)
 
 def base_context():
     return {
@@ -65,3 +73,33 @@ def contact(request):
         form = ContactForm()
     context["form"] = form
     return render(request, "portfolio/contact.html", context)
+
+def contact(request):
+    context = base_context()
+
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+            contact_message = form.save()
+            messages.success(
+                request,
+                "Savolingiz yuborildi. Javobni kuzatish uchun sahifani oching."
+            )
+            return redirect(
+                "portfolio:message_status",
+                # token=contact_message.token
+            )
+    else:
+        form = ContactForm()
+
+    context["form"] = form
+    return render(request, "portfolio/contact.html", context)
+
+
+def message_status(request):
+    contact_message = ContactMessage.objects.all()
+
+    return render(
+        request,
+        "portfolio/message_status.html",{"responses": contact_message})
