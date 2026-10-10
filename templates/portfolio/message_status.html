@@ -5,25 +5,75 @@
     <title>Title</title>
 </head>
 <body>
- {% extends "base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
 <section class="message-status">
     <div class="message-status__card">
         <p class="message-status__eyebrow">MUROJAAT HOLATI</p>
 
-        <h1>Savolingiz va javob</h1>
+        <h1>Savollar va javoblar</h1>
 
         {% for resp in responses %}
-             <p>{{ resp.message }}  -  {{ resp.response }}</p><br>
+        <div class="message-status__conversation">
 
+            <!-- Savol -->
+            <div class="message-status__question">
+                <div class="message-status__header">
+                    <span class="message-status__avatar">👤</span>
+
+                    <div class="message-status__identity">
+                        <strong>{{ resp.name }}</strong>
+                        <span class="message-status__role">Foydalanuvchi</span>
+                    </div>
+
+                    <span class="message-status__label">SAVOL</span>
+                </div>
+
+                <div class="message-status__body">
+                    {{ resp.message|linebreaksbr }}
+                </div>
+            </div>
+
+            <!-- Javob (Agar mavjud bo'lsa, to'g'ridan-to'g'ri chiqib turadi) -->
+            {% if resp.response %}
+            <div class="message-status__reply">
+                <div class="message-status__answer">
+                    <div class="message-status__header">
+                        <span class="message-status__avatar root-avatar">⌘</span>
+
+                        <div class="message-status__identity">
+                            <strong>root</strong>
+                            <span class="message-status__role">Administrator</span>
+                        </div>
+
+                        <span class="message-status__label">JAVOB</span>
+                    </div>
+
+                    <div class="message-status__body">
+                        {{ resp.response|linebreaksbr }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+        {% empty %}
+        <p>Hozircha savollar mavjud emas.</p>
         {% endfor %}
+
+        <a class="message-status__back" href="{% url 'portfolio:contact' %}">
+            ← Kontakt sahifasiga qaytish
+        </a>
+    </div>
+</section>
+{% endblock %}
 
         <a class="message-status__back" href="{% url 'portfolio:contact' %}">
             ← Kontakt sahifasiga qaytirsh
         </a>
     </div>
 </section>
-{% endblock %}
+
 </body>
 </html>

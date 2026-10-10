@@ -98,8 +98,9 @@ def contact(request):
 
 
 def message_status(request):
-    contact_message = ContactMessage.objects.all()
+    context = base_context()  # Asosiy kontekst
 
-    return render(
-        request,
-        "portfolio/message_status.html",{"responses": contact_message})
+    # Barcha murojaatlarni (savol va javoblarni) olib kelamiz va oxirgisi tepada chiqishi uchun tartiblaymiz
+    context["responses"] = ContactMessage.objects.all().order_by("-id")
+
+    return render(request, "portfolio/message_status.html", context)
